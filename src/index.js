@@ -9,17 +9,13 @@ function refreshWeather(response) {
   let date = new Date(response.data.time * 1000);
   let iconElement = document.querySelector("#icon");
 
-  iconElement.innerHTML = `<img
-                src="${response.data.condition.icon_url}"
-                class="weather-app-icon"
-              />`;
-
   cityElement.innerHTML = response.data.city;
   timeElement.innerHTML = formatDate(date);
   descriptionElement.innerHTML = response.data.condition.description;
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
   windElement.innerHTML = `${response.data.wind.speed}km/h`;
   temperatureElement.innerHTML = Math.round(temperature);
+  iiconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
 }
 
 function formatDate(date) {
@@ -57,8 +53,6 @@ function handleSearchSubmit(event) {
 }
 
 function displayForecast() {
-  let forecast = document.querySelector("#forecast");
-
   let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   let forecastHtml = "";
 
@@ -78,6 +72,7 @@ function displayForecast() {
   </div>
 `;
   });
+  let forecast = document.querySelector("#forecast");
   forecastElement.innerHTML = forecastHtml;
 }
 
